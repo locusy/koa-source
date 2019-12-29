@@ -1,3 +1,9 @@
+/*
+ * @Author: tianzhi 
+ * @Date: 2019-12-29 15:13:10 
+ * @Last Modified by:   tianzhi 
+ * @Last Modified time: 2019-12-29 15:13:10 
+ */
 const Koa = require('koa');
 const app = new Koa();
 
@@ -64,7 +70,6 @@ app.use(async (ctx,next) => {
     const end = new Date().getTime();
     console.log(`请求${ctx.url}, 耗时${parseInt(end-start)}ms`)
 })
-
 
 
 app.listen(8000)
