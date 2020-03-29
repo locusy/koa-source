@@ -9,14 +9,29 @@ const app = new Koa();
 
 /**
  * 基本操作
+ * 洋葱：从外向内执行中间件
  */
 app.use((context, next) => {
     context.body = [
         {
-            name: 'a sample body'
+            name: 'first'
         }
     ]
+    // next()表示执行下一个中间件
     next()
+    context.body = [
+        {
+            name: 'third'
+        }
+    ]
+})
+
+app.use((ctx, next) => {
+    ctx.body = [
+        {
+            name: 'second'
+        }
+    ]
 })
 
 // app.use((ctx, next) => {
@@ -32,44 +47,46 @@ app.use((context, next) => {
 /**
  * 定义路由
  */
-const router = {}
-router['/html'] = ctx => {
-    ctx.type = 'text/html;charset=utf-8'
-    ctx.body = `<b>名字是${ctx.body[0].name}</b>`
-}
-app.use((ctx, next) => {
-    router[ctx.url](ctx)
-    next()
-})
+// const router = {}
+// router['/html'] = ctx => {
+//     ctx.type = 'text/html;charset=utf-8'
+//     ctx.body = `<b>名字是${ctx.body[0].name}</b>`
+// }
+// app.use((ctx, next) => {
+//     router[ctx.url](ctx)
+//     next()
+// })
 
 
 /**
  * 中间件
  */
-app.use(require('koa-static')(__dirname + '/'))
+// app.use(require('koa-static')(__dirname + '/'))
 
-const router = require('koa-router')();
-router.get('/string', async (ctx, next) => {
-    ctx.body = 'string koa'
-})
-router.get('/json', async (ctx, next) => {
-    ctx.body = {
-        name: 'json name koa'
-    }
-})
-app.use(router.routes())
+// const router = require('koa-router')();
+// router.get('/string', async (ctx, next) => {
+//     ctx.body = 'string koa'
+// })
+// router.get('/json', async (ctx, next) => {
+//     ctx.body = {
+//         name: 'json name koa'
+//     }
+// })
+// app.use(router.routes())
 
 
 /**
  * 日志
  */
-app.use(async (ctx,next) => {
-    const start = new Date().getTime()
-    console.log(`start: ${ctx.url}`);
-    await next();
-    const end = new Date().getTime();
-    console.log(`请求${ctx.url}, 耗时${parseInt(end-start)}ms`)
+// app.use(async (ctx,next) => {
+//     const start = new Date().getTime()
+//     console.log(`start: ${ctx.url}`);
+//     await next();
+//     const end = new Date().getTime();
+//     console.log(`请求${ctx.url}, 耗时${parseInt(end-start)}ms`)
+// })
+
+
+app.listen(8000, () => {
+    console.log('server is listening at 8000')
 })
-
-
-app.listen(8000)
