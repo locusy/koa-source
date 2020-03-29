@@ -1,8 +1,8 @@
 /*
  * @Author: tianzhi
  * @Date: 2019-12-31 10:04:18
- * @LastEditors  : tianzhi
- * @LastEditTime : 2019-12-31 15:28:22
+ * @LastEditors: tz
+ * @LastEditTime: 2020-03-29 14:03:48
  */
 const add = (x, y) => x + y
 const add2 = (x) => x * 2
@@ -19,7 +19,7 @@ const square = z => z * z
  * 上面就算是两次函数组合调用，我们可以把他合并成一个函数
  */
 // const compose = (fn1, fn2) => (...args) => fn2(fn1(...args))
-// const fn3 = compose(add,square)
+// const fn3 = compose(add, square)
 // console.log(fn3(1, 8))
 // console.log(fn3(...[1, 8]))
 
@@ -51,6 +51,7 @@ function compose(middlewares) {
                 return Promise.resolve()
             }
             return Promise.resolve(
+                // fn函数里面加一个next()函数参数 实际上是下一个中间件
                 fn(function next() {
                     return dispatch(i+1)
                 })
@@ -59,21 +60,26 @@ function compose(middlewares) {
     }
 }
 
+
+/**
+ * 执行顺序12345  洋葱圈：由外而内=>由内而外
+ */
+
 async function fn1(next) {
-    console.log('fn1')
+    console.log('1')
     await next()
-    console.log('fn1 end')
+    console.log('5')
 }
 
 async function fn2(next) {
-    console.log('fn2')
+    console.log('2')
     await delay()
     await next()
-    console.log('fn2 end')
+    console.log('4')
 }
 
 function fn3(next) {
-    console.log('fn3')
+    console.log('3')
 }
 
 function delay() {
