@@ -1,10 +1,3 @@
-/*
- * @Author: tianzhi
- * @Date: 2019-12-31 18:19:18
- * @LastEditors  : tianzhi
- * @LastEditTime : 2019-12-31 18:20:47
- */
-
 /**
  * koa中间件的规范:
         一个async函数 
