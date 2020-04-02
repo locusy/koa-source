@@ -1,11 +1,3 @@
-/*
- * @Author: tianzhi 
- * @Date: 2019-12-29 15:13:04 
- * @Last Modified by: tianzhi
- * @Last Modified time: 2019-12-29 17:34:29
- */
-
- 
  /**
   * 原始http
   */
