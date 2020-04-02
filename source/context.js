@@ -1,9 +1,3 @@
-/*
- * @Author: tianzhi
- * @Date: 2019-12-30 17:13:52
- * @LastEditors  : tianzhi
- * @LastEditTime : 2019-12-30 17:30:57
- */
 module.exports = {
     get url() {
         return this.request.url

@@ -1,9 +1,3 @@
-/*
- * @Author: tianzhi
- * @Date: 2019-12-31 10:04:18
- * @LastEditors: tz
- * @LastEditTime: 2020-03-29 14:03:48
- */
 const add = (x, y) => x + y
 const add2 = (x) => x * 2
 const square = z => z * z
